@@ -1,14 +1,14 @@
-let mili = 00;
-let sec = 00;
-let min = 00;
-let hour = 00;
+let mili = 0;
+let sec = 0;
+let min = 0;
+let hour = 0;
 let timerDisplay = document.getElementById('timer-display');
 let startBtn = document.getElementById('start');
 let pauseBtn = document.getElementById('pause');
 let resetBtn = document.getElementById('reset');
 
 let timerId = null;
-
+// timer start function
 startBtn.addEventListener('click', function() {
     if (timerId !== null) {
         clearInterval(timerId);
@@ -16,16 +16,19 @@ startBtn.addEventListener('click', function() {
     timerId = setInterval(startTimer, 10);
 })
 
+// timer pause function
 pauseBtn.addEventListener('click', function() {
     clearInterval(timerId);
 })
 
+// timer reset function
 resetBtn.addEventListener('click', function() {
     clearInterval(timerId);
     timerDisplay.innerHTML = `00 : 00 : 00 : 00`;
     mili = min = sec = hour = 0;
 })
 
+// timer main function
 function startTimer() {
     mili++;
     if (mili === 99) {
@@ -33,8 +36,8 @@ function startTimer() {
         sec++;
         if (sec === 60) {
             sec = 0;
-            mili++;
-            if (mili === 60) {
+            min++;
+            if (min === 60) {
                 hour++;
             }
         }
